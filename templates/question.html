@@ -1,0 +1,20 @@
+<div id="question" class="fadeIn">
+  <p class="subtitle">${question.text}</p>
+  <p class="subtitle is-7">${question.example}</p>
+  <div class="has-text-centered">
+    <button onclick="next('${question.id}_${question.options[0].id}')" class="button is-info">
+      ${question.options[0].display}
+    </button>
+    <button onclick="next('${question.id}_${question.options[1].id}')" class="button is-danger">
+      ${question.options[1].display}
+    </button>
+    <button onclick="next('${question.id}_${question.options[2].id}')" class="button is-danger">
+      ${question.options[2].display}
+    </button>
+  </div>
+  <div class="has-text-centered" style="padding-top: 30px;">
+    <button onclick="back()" class="button is-warning">
+      Back
+    </button>
+  </div>
+</div>
