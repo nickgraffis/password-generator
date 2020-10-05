@@ -81,6 +81,11 @@ function back() {
     questionCount = 0;
     next(count);
   } else if (questionCount == 3) {
+    let progress = document.getElementById('progress');
+    progress.classList = 'progress is-info';
+    let passwordStrength = document.getElementById('password-strength');
+    passwordStrength.style.opacity = 0;
+    passwordStrength.classList = 'is-size-7 has-text-centered';
     var letters = [];
     if (charecterSet.includes('a')) {
       letters.push(...lowercase.split(''));
@@ -111,7 +116,6 @@ function questionZero(targetLocation, params) {
     targetLocation.innerHTML = eval('`' + getFile('templates/question.html') + '`');
     let progress = document.getElementById('progress');
     progress.value = '33';
-    console.log(questionCount);
     return;
   } else {
     count = params;
@@ -124,7 +128,6 @@ function questionZero(targetLocation, params) {
     targetLocation.innerHTML = eval('`' + getFile('templates/question.html') + '`');
     let progress = document.getElementById('progress');
     progress.value = '33';
-    console.log(questionCount);
     return;
   }
 }
@@ -133,7 +136,6 @@ function questionOne (targetLocation, params) {
   questionCount = 2;
   if (params != 'none') {
     let choices = params.split('_');
-    console.log(choices);
     if (choices[1] != 'both') {
       charecterSet.push(...eval(choices[1]).split(''));
     } else {
@@ -143,13 +145,12 @@ function questionOne (targetLocation, params) {
     question = questions[1];
     targetLocation.innerHTML = eval('`' + getFile('templates/question.html') + '`');
     progress.value = '66';
-    console.log(questionCount);
   } else {
     questionCount = 2;
     question = questions[1];
     targetLocation.innerHTML = eval('`' + getFile('templates/question.html') + '`');
+    let progress = document.getElementById('progress');
     progress.value = '66';
-    console.log(questionCount);
   }
   return;
 }
@@ -164,15 +165,35 @@ function questionTwo(targetLocation, params) {
       charecterSet.push(...numbers.split(''));
       charecterSet.push(...special.split(''));
     }
-    console.log(charecterSet);
     let password = generatePassword(count, charecterSet);
     targetLocation.innerHTML = eval('`' + getFile('templates/password.html') + '`');
+    let progress = document.getElementById('progress');
     progress.value = '100';
-    document.getElementById('lock').classList = 'lock';
-    console.log(questionCount);
+    let lockIcon = document.getElementById('lock');
+    let passwordStrength = document.getElementById('password-strength');
+    passwordStrength.style.opacity = 1;
+    lockIcon.classList.remove('unlocked');
+    if (count > 24 && charecterSet.length > 90) {
+      lockIcon.classList.add('safe');
+      passwordStrength.classList.add('has-text-success');
+      passwordStrength.innerHTML = 'Password is very strong!';
+      progress.classList.remove('is-info');
+      progress.classList.add('is-success');
+    } else if (count > 9 && count < 25 && charecterSet.length > 32 && charecterSet.length < 91) {
+      lockIcon.classList.add('ok');
+      passwordStrength.classList.add('has-text-info');
+      passwordStrength.innerHTML = 'Password is strong!';
+    } else {
+      lockIcon.classList.add('poor');
+      passwordStrength.classList.add('has-text-danger');
+      passwordStrength.innerHTML = 'Password is weak!';
+      progress.classList.remove('is-info');
+      progress.classList.add('is-danger');
+    }
   } else {
     let password = generatePassword(count, charecterSet);
     targetLocation.innerHTML = eval('`' + getFile('templates/password.html') + '`');
+    let progress = document.getElementById('progress');
     progress.value = '100';
   }
   return;
@@ -216,6 +237,10 @@ function startOver() {
   let progress = document.getElementById('progress');
   progress.value = '00';
   document.getElementById('lock').classList = 'lock unlocked';
+  let passwordStrength = document.getElementById('password-strength');
+  passwordStrength.style.opacity = 0;
+  passwordStrength.classList = 'is-size-7 has-text-centered';
+  progress.classList = 'progress is-info';
   beginAskingQuestions();
 }
 
