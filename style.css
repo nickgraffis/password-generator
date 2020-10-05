@@ -234,15 +234,7 @@
     border-color: transparent transparent rgba(32, 156, 238, 0.9) transparent;
 }
 
-[data-tooltip]:not(.is-disabled).has-tooltip-info:not(.has-tooltip-bottom)::after,
-[data-tooltip]:not(.is-disabled).has-tooltip-info:not(.has-tooltip-left)::after,
-[data-tooltip]:not(.is-disabled).has-tooltip-info:not(.has-tooltip-right)::after,
-[data-tooltip]:not(.is-loading).has-tooltip-info:not(.has-tooltip-bottom)::after,
-[data-tooltip]:not(.is-loading).has-tooltip-info:not(.has-tooltip-left)::after,
-[data-tooltip]:not(.is-loading).has-tooltip-info:not(.has-tooltip-right)::after,
-[data-tooltip]:not([disabled]).has-tooltip-info:not(.has-tooltip-bottom)::after,
-[data-tooltip]:not([disabled]).has-tooltip-info:not(.has-tooltip-left)::after,
-[data-tooltip]:not([disabled]).has-tooltip-info:not(.has-tooltip-right)::after {
+[data-tooltip].has-tooltip-info::after {
     border-color: rgba(32, 156, 238, 0.9) transparent transparent transparent;
 }
 [data-tooltip]:not(.is-disabled).has-tooltip-info:before,
