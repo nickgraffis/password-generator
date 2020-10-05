@@ -52,8 +52,11 @@ function getRandomInt(max, min = 0) {
 function generatePassword(count, array) {
   let password = [];
   console.log(array);
+  console.log(count);
   for (let i = 0; i < count; i++) {
-    password.push(array[getRandomInt(array.length - 1)]);
+    let randomInt = getRandomInt(array.length - 1);
+    console.log(randomInt);
+    password.push(array[randomInt]);
   }
   return password.join('');
 }
