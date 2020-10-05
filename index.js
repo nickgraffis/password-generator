@@ -179,7 +179,7 @@ function questionTwo(targetLocation, params) {
       passwordStrength.innerHTML = 'Password is very strong!';
       progress.classList.remove('is-info');
       progress.classList.add('is-success');
-    } else if (count > 9 && count < 25 && charecterSet.length > 32 && charecterSet.length < 91) {
+    } else if (count > 9 && count < 25 && charecterSet.length > 32) {
       lockIcon.classList.add('ok');
       passwordStrength.classList.add('has-text-info');
       passwordStrength.innerHTML = 'Password is strong!';
